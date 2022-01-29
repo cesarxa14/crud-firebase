@@ -1,0 +1,35 @@
+<app-header></app-header>
+<mat-progress-bar *ngIf="progress_bar" mode="query" color="warn"></mat-progress-bar>
+<div class="container" *ngIf="product">
+    <div *ngIf="product.offerPrice" style="float: right; background-color: rgb(174, 6, 6); color: white;">
+        <h3>Precio Oferta hasta {{dateConverted}} </h3>
+    </div>
+    <div class="images">
+        <div *ngFor="let img of images" class="img-item" (click)="viewImageFullscreen(img)">
+            <img style="height: 200px; width: 200px; " src="{{img.url}}" alt="">
+        </div>
+
+    </div>
+
+    <div class="info">
+
+        <div>
+            <h1>{{product.title}}</h1>
+            <mat-divider></mat-divider>
+        </div>
+        <br style>
+        <div>
+            <h4><i>{{product.description}}</i></h4>
+            <mat-divider></mat-divider>
+        </div>
+        <div *ngIf="!product.offerPrice">
+            <h2>S/.{{product.salePrice}}</h2>
+            <mat-divider></mat-divider>
+        </div>
+        <div *ngIf="product.offerPrice">
+            <h2>S/.{{product.offerPrice}}</h2>
+            <mat-divider></mat-divider>
+        </div>
+
+    </div>
+</div>

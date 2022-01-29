@@ -1,0 +1,40 @@
+<app-header></app-header>
+<div>
+    <button matTooltip="Agregar producto" (click)="openModal('Agregar Producto')"  class="button-add-product" mat-mini-fab color="primary">
+        <span class="material-icons">add</span>
+    </button>
+</div>
+<div class="container">
+   
+    <div class="title">
+        <p>Productos</p>
+    </div>
+
+    <mat-progress-bar *ngIf="progress_bar" mode="query"></mat-progress-bar>
+
+    <div class="items" *ngIf="product_list.length > 0; else noProducts">
+        
+        <div class="card-item" *ngFor="let product of products.value">
+            <div style="float: right;">
+                <button mat-button [matMenuTriggerFor]="menu" color="primary">
+                    <span class="material-icons">more_vert</span>
+                </button>
+                <mat-menu #menu="matMenu" yPosition="below" xPosition="before">
+                    <button mat-menu-item (click)="openModal('Editar Producto', product)">Editar</button>
+                    <button mat-menu-item (click)="openModalDelete(product)">Eliminar</button>
+                  </mat-menu>
+                
+            </div>
+            <h2 style="background-color: black; color: white;">{{product.title}}</h2>
+            <img *ngIf="product.urlImages[0]" class="img-product" src="{{product?.urlImages[0]}}" alt="dd" (click)="goToDetails(product)">
+            <h4>{{product.description}}</h4>
+        </div>
+        
+    </div>
+
+    <ng-template #noProducts>
+        <h1>No hay productos</h1>
+    </ng-template>
+
+</div>
+

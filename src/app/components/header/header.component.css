@@ -1,0 +1,9 @@
+.app-name{
+    cursor: pointer;
+
+}
+
+.app-name:hover{
+    color: black;
+    transition: ease 1s;
+}
